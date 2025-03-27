@@ -1,0 +1,389 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="icon" href="./assets/images/vipa-icon.png">
+    <title>VIPA Portal</title>
+    <!-- Simple bar CSS -->
+    <link rel="stylesheet" href="../css/simplebar.css">
+    <!-- Fonts CSS -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+    <!-- Icons CSS -->
+    <link rel="stylesheet" href="../css/feather.css">
+    <!-- Date Range Picker CSS -->
+    <link rel="stylesheet" href="../css/daterangepicker.css">
+    <!-- App CSS -->
+    <link rel="stylesheet" href="../css/app-light.css" id="lightTheme" disabled>
+    <link rel="stylesheet" href="../css/app-dark.css" id="darkTheme">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  </head>
+  <body class="vertical  dark  ">
+    <div class="wrapper">
+        <main id="main" role="main" class="main-content">
+            <div id="contacts" class="container-fluid">
+              <div class="row justify-content-center">
+                <div class="col-12">
+                  <div class="row align-items-center my-4">
+                    <div class="col">
+                      <h2 class="h3 mb-0 page-title">Contacts</h2>
+                    </div>
+                    <div class="col-auto">
+                      <!-- <button id="deletebtn" type="button" class="btn btn-secondary" data-toggle="modal" data-target="#deleteModal" disabled><span class="fe fe-trash fe-12 mr-2"></span>Delete</button> -->
+                      <button id="createbtn" type="button" class="btn btn-primary" data-toggle="modal" data-target="#createModal"><span class="fe fe-filter fe-12 mr-2"></span>Create</button>
+                    </div>
+
+                    <!--Delete modal-->
+                    <!-- <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" style="display: none;">
+                      <div class="modal-dialog modal-dialog-centered" role="document">
+                        <div class="modal-content">
+                          <div class="modal-header">
+                            <h5 class="modal-title" id="verticalModalTitle">Are you sure?</h5>
+                            <button type="button" class="close" data-dismiss="modal">
+                              <span>×</span>
+                            </button>
+                          </div>
+                          <div class="modal-body">Please note that this will delete the contact/s and policies associated to it. This step is irreversible.</div>
+                          <div class="modal-footer">
+                            <button type="button" class="btn mb-2 btn-secondary" data-dismiss="modal">Cancel</button>
+                            <button id="delete_confirm" type="button" class="btn mb-2 btn-primary" data-dismiss="modal">Yes</button>
+                          </div>
+                        </div>
+                      </div>
+                    </div> -->
+                    <!--/Delete modal-->
+
+                    <!--create modal-->
+                    <div class="modal fade" id="createModal" tabindex="-1" role="dialog" style="display: none;">
+                      <div class="modal-dialog modal-dialog-centered" role="document">
+                        <div class="modal-content">
+                          <div class="modal-header">
+                            <h5 class="modal-title" id="verticalModalTitle">Create New Contact</h5>
+                            <button type="button" class="close" data-dismiss="modal">
+                              <span>×</span>
+                            </button>
+                          </div>
+                        <form id="create_contact">
+                          <div class="modal-body">
+                            <p>Please fill the information to create new contact.</p>
+                            
+                              <div class="form-row">
+                                <div class="form-group col-md-6">
+                                  <label for="first_name">Firstname</label>
+                                  <input type="text" class="form-control" id="first_name" placeholder="John" required>
+                                </div>
+                                <div class="form-group col-md-6">
+                                  <label for="last_name">Lastname</label>
+                                  <input type="text" class="form-control" id="last_name" placeholder="Doe" required>
+                                </div>
+                              </div>
+                              <div class="form-row">
+                                <div class="form-group col-md-6">
+                                  <label for="phone">Phone</label>
+                                  <input class="form-control" id="phone" required="">
+                                </div>
+                                <div class="form-group col-md-6">
+                                  <label for="state">State</label>
+                                  <input type="text" class="form-control" id="state" placeholder="UT" required>
+                                </div>
+                              </div>
+                                  <!--birthday-->
+                                  <div class="form-group">
+                                    <label for="birthday">Birthday</label>
+                                    <input type="date" class="form-control" id="birthday">
+                                  </div>
+
+                                <div class="form-group">
+                                  <label for="lead_source">Lead Source</label>
+                                  <input type="text" class="form-control" id="lead_source" placeholder="external">
+                                </div>
+                          </div>
+                          <div class="modal-footer">
+                            <button type="button" class="btn mb-2 btn-secondary" data-dismiss="modal">Cancel</button>
+                            <button type="submit" class="btn mb-2 btn-primary">Create</button>
+                          </div>
+                        </form>
+                        </div>
+                      </div>
+                    </div>
+                    <!--/create modal-->
+                  </div>
+                  <!-- table -->
+                  <div class="card shadow">
+                    <div class="card-body">
+                      <table class="table table-borderless table-hover">
+                        <thead>
+                          <tr>
+                            <!-- <th>
+                              <div class="custom-control custom-checkbox">
+                                <input type="checkbox" class="custom-control-input" id="all2">
+                                <label class="custom-control-label" for="all2"></label>
+                              </div>
+                            </th> -->
+                            <th>Name</th>
+                            <th>Phone</th>
+                            <th>State</th>
+                            <th>Source</th>
+                            <th># of Policies</th>
+                            <th>Action</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <!--data from api goes here-->
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+                  <nav id="contactTBnav" class="my-3">
+                    <ul class="pagination justify-content-end mb-0">
+                      <li class="page-item"><a class="page-link" href="#">Previous</a></li>
+                      <li class="page-item active"><a class="page-link" href="#">1</a></li>
+                      <li class="page-item"><a class="page-link" href="#">2</a></li>
+                      <li class="page-item"><a class="page-link" href="#">3</a></li>
+                      <li class="page-item"><a class="page-link" href="#">Next</a></li>
+                    </ul>
+                  </nav>
+                </div> <!-- .col-12 -->
+              </div> <!-- .row -->
+            </div> <!-- .container-fluid -->
+          </main>
+    </div> <!-- .wrapper -->
+    <script src="../customjs/contact-script.js"></script>
+    <script src="../js/jquery.min.js"></script>
+    <script src="../js/popper.min.js"></script>
+    <script src="../js/moment.min.js"></script>
+    <script src="../js/bootstrap.min.js"></script>
+    <script src="../js/simplebar.min.js"></script>
+    <script src='../js/daterangepicker.js'></script>
+    <script src='../js/jquery.stickOnScroll.js'></script>
+    <script src="../js/tinycolor-min.js"></script>
+    <script src="../js/config.js"></script>
+    <script src="../js/d3.min.js"></script>
+    <script src="../js/topojson.min.js"></script>
+    <script src="../js/datamaps.all.min.js"></script>
+    <script src="../js/datamaps-zoomto.js"></script>
+    <script src="../js/datamaps.custom.js"></script>
+    <script src="../js/Chart.min.js"></script>
+    <script>
+      /* defind global options */
+      Chart.defaults.global.defaultFontFamily = base.defaultFontFamily;
+      Chart.defaults.global.defaultFontColor = colors.mutedColor;
+    </script>
+    <script src="../js/gauge.min.js"></script>
+    <script src="../js/jquery.sparkline.min.js"></script>
+    <script src="../js/apexcharts.min.js"></script>
+    <script src="../js/apexcharts.custom.js"></script>
+    <script src='../js/jquery.mask.min.js'></script>
+    <script src='../js/select2.min.js'></script>
+    <script src='../js/jquery.steps.min.js'></script>
+    <script src='../js/jquery.validate.min.js'></script>
+    <script src='../js/jquery.timepicker.js'></script>
+    <script src='../js/dropzone.min.js'></script>
+    <script src='../js/uppy.min.js'></script>
+    <script src='../js/quill.min.js'></script>
+    <script>
+      $('.select2').select2(
+      {
+        theme: 'bootstrap4',
+      });
+      $('.select2-multi').select2(
+      {
+        multiple: true,
+        theme: 'bootstrap4',
+      });
+      $('.drgpicker').daterangepicker(
+      {
+        singleDatePicker: true,
+        timePicker: false,
+        showDropdowns: true,
+        locale:
+        {
+          format: 'MM/DD/YYYY'
+        }
+      });
+      $('.time-input').timepicker(
+      {
+        'scrollDefault': 'now',
+        'zindex': '9999' /* fix modal open */
+      });
+      /** date range picker */
+      if ($('.datetimes').length)
+      {
+        $('.datetimes').daterangepicker(
+        {
+          timePicker: true,
+          startDate: moment().startOf('hour'),
+          endDate: moment().startOf('hour').add(32, 'hour'),
+          locale:
+          {
+            format: 'M/DD hh:mm A'
+          }
+        });
+      }
+      var start = moment().subtract(29, 'days');
+      var end = moment();
+
+      function cb(start, end)
+      {
+        $('#reportrange span').html(start.format('MMMM D, YYYY') + ' - ' + end.format('MMMM D, YYYY'));
+      }
+      $('#reportrange').daterangepicker(
+      {
+        startDate: start,
+        endDate: end,
+        ranges:
+        {
+          'Today': [moment(), moment()],
+          'Yesterday': [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
+          'Last 7 Days': [moment().subtract(6, 'days'), moment()],
+          'Last 30 Days': [moment().subtract(29, 'days'), moment()],
+          'This Month': [moment().startOf('month'), moment().endOf('month')],
+          'Last Month': [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')]
+        }
+      }, cb);
+      cb(start, end);
+      $('.input-placeholder').mask("00/00/0000",
+      {
+        placeholder: "__/__/____"
+      });
+      $('.input-zip').mask('00000-000',
+      {
+        placeholder: "____-___"
+      });
+      $('.input-money').mask("#.##0,00",
+      {
+        reverse: true
+      });
+      $('.input-phoneus').mask('(000) 000-0000');
+      $('.input-mixed').mask('AAA 000-S0S');
+      $('.input-ip').mask('0ZZ.0ZZ.0ZZ.0ZZ',
+      {
+        translation:
+        {
+          'Z':
+          {
+            pattern: /[0-9]/,
+            optional: true
+          }
+        },
+        placeholder: "___.___.___.___"
+      });
+      // editor
+      var editor = document.getElementById('editor');
+      if (editor)
+      {
+        var toolbarOptions = [
+          [
+          {
+            'font': []
+          }],
+          [
+          {
+            'header': [1, 2, 3, 4, 5, 6, false]
+          }],
+          ['bold', 'italic', 'underline', 'strike'],
+          ['blockquote', 'code-block'],
+          [
+          {
+            'header': 1
+          },
+          {
+            'header': 2
+          }],
+          [
+          {
+            'list': 'ordered'
+          },
+          {
+            'list': 'bullet'
+          }],
+          [
+          {
+            'script': 'sub'
+          },
+          {
+            'script': 'super'
+          }],
+          [
+          {
+            'indent': '-1'
+          },
+          {
+            'indent': '+1'
+          }], // outdent/indent
+          [
+          {
+            'direction': 'rtl'
+          }], // text direction
+          [
+          {
+            'color': []
+          },
+          {
+            'background': []
+          }], // dropdown with defaults from theme
+          [
+          {
+            'align': []
+          }],
+          ['clean'] // remove formatting button
+        ];
+        var quill = new Quill(editor,
+        {
+          modules:
+          {
+            toolbar: toolbarOptions
+          },
+          theme: 'snow'
+        });
+      }
+      // Example starter JavaScript for disabling form submissions if there are invalid fields
+      (function()
+      {
+        'use strict';
+        window.addEventListener('load', function()
+        {
+          // Fetch all the forms we want to apply custom Bootstrap validation styles to
+          var forms = document.getElementsByClassName('needs-validation');
+          // Loop over them and prevent submission
+          var validation = Array.prototype.filter.call(forms, function(form)
+          {
+            form.addEventListener('submit', function(event)
+            {
+              if (form.checkValidity() === false)
+              {
+                event.preventDefault();
+                event.stopPropagation();
+              }
+              form.classList.add('was-validated');
+            }, false);
+          });
+        }, false);
+      })();
+    </script>
+    <script>
+      var uptarg = document.getElementById('drag-drop-area');
+      if (uptarg)
+      {
+        var uppy = Uppy.Core().use(Uppy.Dashboard,
+        {
+          inline: true,
+          target: uptarg,
+          proudlyDisplayPoweredByUppy: false,
+          theme: 'dark',
+          width: 770,
+          height: 210,
+          plugins: ['Webcam']
+        }).use(Uppy.Tus,
+        {
+          endpoint: 'https://master.tus.io/files/'
+        });
+        uppy.on('complete', (result) =>
+        {
+          console.log('Upload complete! We’ve uploaded these files:', result.successful)
+        });
+      }
+    </script>
+    <script src="../js/apps.js"></script>
+  </body>
+</html>
